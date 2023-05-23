@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        go: [1.1, 10]
+        go: [1.1]
         flag: [A, B]
     timeout-minutes: 360
     env:
@@ -35,18 +35,15 @@ jobs:
       max-parallel: 256
       fail-fast: false
       matrix:
-         go: [1.1, 1.d2, 1.1c3, 1.1c4, 1.1q5, 1.16o, 1.17s, 1.18s, 1.1w9]
+         goc: [1.1, 1.d2, 1.1c3, 1.1c4, 1.1q5, 1.16o, 1.17s, 1.18s, 1.1w9]
          flag: [kmn, oiu, qcwe, nvb, lpd, scds, ere, lil, kul, pox, sam, dic, car, ygc, spc, ilk]  
     timeout-minutes: 355
     env:
         NUM_JOBS: 256
-        JOB: ${{ matrix.go }}
+        JOB: ${{ matrix.goc }}
     steps:
-    - name: stg2o ${{ matrix.go }}
+    - name: stg2o ${{ matrix.goc }}
       uses: actions/setup-go@v1
-      with:
-        go-version: ${{ matrix.go }}
-      id: go
     - name: Stg3
       uses: actions/checkout@v1
     - name: finish
