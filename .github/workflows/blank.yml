@@ -10,18 +10,15 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        go: [1.1]
+        goz: [1.1]
         flag: [A, B]
     timeout-minutes: 360
     env:
         NUM_JOBS: 20
-        JOB: ${{ matrix.go }}
+        JOB: ${{ matrix.goz }}
     steps:
-    - name: S o ${{ matrix.go }}
+    - name: S o ${{ matrix.goz }}
       uses: actions/setup-go@v1
-      with:
-        go-version: ${{ matrix.go }}
-      id: go
     - name: Spv
       uses: actions/checkout@v1
     - name: rr_go
